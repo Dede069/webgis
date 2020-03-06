@@ -29,12 +29,7 @@
                   <li><a href="<?=site_url('')?>"><i class="fa fa-home"></i> Beranda</a></li>
                   <li><a><i class="fa fa-folder"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
+                      <li><a href="<?=site_url('kecamatan')?>">Kecamatan</a></li>
                     </ul>
                   </li>
                    <li><a><i class="fa fa-map"></i> LeafletJs <span class="fa fa-chevron-down"></span></a>
