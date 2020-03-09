@@ -35,6 +35,23 @@ class Kecamatan extends CI_Controller {
 				'nm_kecamatan'=>$this->input->post('nm_kecamatan'),
 				'warna_kecamatan'=>$this->input->post('warna_kecamatan'),
 			];
+			// upload
+			if($_FILES['geojson_kecamatan']['name']!=''){
+				$upload=upload('geojson_kecamatan','geojson');
+				if($upload['info']==true){
+					$data['geojson_kecamatan']=$upload['upload_data']['file_name'];
+				}
+				elseif($upload['info']==false){
+					$info='<div class="alert alert-danger alert-dismissible">
+	            		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	            		<h4><i class="icon fa fa-ban"></i> Error!</h4> '.$upload['message'].' </div>';
+					$this->session->set_flashdata('info',$info);
+					redirect('kecamatan');
+					exit();
+				}
+			}
+			// upload
+			
 			if($_POST['parameter']=="tambah"){
 				$this->Model->insert($data);
 			}
@@ -44,6 +61,17 @@ class Kecamatan extends CI_Controller {
 
 		}
 
+		redirect('kecamatan');
+	}
+
+	public function hapus($id=''){
+		// hapus file di dalam folder
+		$this->db->where('id_kecamatan',$id);
+		$get=$this->Model->get()->row();
+		$geojson_kecamatan=$get->geojson_kecamatan;
+		unlink('assets/unggah/geojson/'.$geojson_kecamatan);
+		// end hapus file di dalam folder
+		$this->Model->delete(["id_kecamatan"=>$id]);
 		redirect('kecamatan');
 	}
 }

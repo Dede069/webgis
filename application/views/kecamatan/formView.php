@@ -30,14 +30,17 @@ if($parameter=='ubah' && $id!=''){
 	    		</div>
     		</div>
     	</div>
-    	<!-- <div class="form-group">
+    	<div class="form-group">
     		<label>GeoJSON</label>
     		<div class="row">
 	    		<div class="col-md-4">
     				<?=input_file('geojson_kecamatan',$geojson_kecamatan)?>
+                    <?php if ($parameter=='ubah'): ?>
+                        <small class="text-success">Biarkan kosong jika tidak ingin diubah</small>
+                    <?php endif ?>
     			</div>
     		</div>
-    	</div> -->
+    	</div>
     	<div class="form-group">
     		<label>Warna</label> 
     		<div class="row">
