@@ -1,29 +1,31 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kecamatan extends CI_Controller {
+class Hotspot extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('KecamatanModel','Model');
+		$this->load->model('HotspotModel','Model');
+		$this->load->model('KecamatanModel');
 	}
 
 	public function index()
 	{
-		$datacontent['url']='kecamatan';
-		$datacontent['title']='Halaman Kecamatan';
+		$datacontent['url']='hotspot';
+		$datacontent['title']='Halaman Hotpost';
 		$datacontent['datatable']=$this->Model->get();
-		$data['content']=$this->load->view('kecamatan/tableView',$datacontent,TRUE);
+		$data['content']=$this->load->view('hotspot/tableView',$datacontent,TRUE);
 		$data['title']=$datacontent['title'];
 		$this->load->view('layouts/html',$data);
 	}
 	public function form($parameter='',$id='')
 	{
-		$datacontent['url']='kecamatan';
+		$datacontent['url']='hotspot';
 		$datacontent['parameter']=$parameter;
 		$datacontent['id']=$id;
-		$datacontent['title']='Form Kecamatan';
-		$data['content']=$this->load->view('kecamatan/formView',$datacontent,TRUE);
+		$datacontent['title']='Form Hotpost';
+		$data['content']=$this->load->view('hotspot/formView',$datacontent,TRUE);
+		$data['js']=$this->load->view('hotspot/js/formJs',$datacontent,TRUE);
 		$data['title']=$datacontent['title'];
 		$this->load->view('layouts/html',$data);
 	}
@@ -31,22 +33,25 @@ class Kecamatan extends CI_Controller {
 	{
 		if($this->input->post()){
 			$data=[
-				'kd_kecamatan'=>$this->input->post('kd_kecamatan'),
-				'nm_kecamatan'=>$this->input->post('nm_kecamatan'),
-				'warna_kecamatan'=>$this->input->post('warna_kecamatan'),
+				'id_kecamatan'=>$this->input->post('id_kecamatan'),
+				'keterangan'=>$this->input->post('keterangan'),
+				'lokasi'=>$this->input->post('lokasi'),
+				'lat'=>$this->input->post('lat'),
+				'lng'=>$this->input->post('lng'),
+				'tanggal'=>$this->input->post('tanggal'),
 			];
 			// upload
-			if($_FILES['geojson_kecamatan']['name']!=''){
-				$upload=upload('geojson_kecamatan','geojson');
+			if($_FILES['marker']['name']!=''){
+				$upload=upload('marker','marker');
 				if($upload['info']==true){
-					$data['geojson_kecamatan']=$upload['upload_data']['file_name'];
+					$data['marker']=$upload['upload_data']['file_name'];
 				}
 				elseif($upload['info']==false){
 					$info='<div class="alert alert-danger alert-dismissible">
 	            		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 	            		<h4><i class="icon fa fa-ban"></i> Error!</h4> '.$upload['message'].' </div>';
 					$this->session->set_flashdata('info',$info);
-					redirect('kecamatan');
+					redirect('hotspot');
 					exit();
 				}
 			}
@@ -56,22 +61,21 @@ class Kecamatan extends CI_Controller {
 				$this->Model->insert($data);
 			}
 			else{
-				$this->Model->update($data,['id_kecamatan'=>$this->input->post('id_kecamatan')]);
+				$this->Model->update($data,['id_hotspot'=>$this->input->post('id_hotspot')]);
 			}
 
 		}
-
-		redirect('kecamatan');
+		redirect('hotspot');
 	}
 
 	public function hapus($id=''){
 		// hapus file di dalam folder
-		$this->db->where('id_kecamatan',$id);
+		$this->db->where('id_hotspot',$id);
 		$get=$this->Model->get()->row();
-		$geojson_kecamatan=$get->geojson_kecamatan;
-		unlink('assets/unggah/geojson/'.$geojson_kecamatan);
+		$geojson_hotspot=$get->geojson_hotspot;
+		unlink('assets/unggah/geojson/'.$geojson_hotspot);
 		// end hapus file di dalam folder
-		$this->Model->delete(["id_kecamatan"=>$id]);
-		redirect('kecamatan');
+		$this->Model->delete(["id_hotspot"=>$id]);
+		redirect('hotspot');
 	}
 }

@@ -32,6 +32,11 @@
                       <li><a href="<?=site_url('kecamatan')?>">Kecamatan</a></li>
                     </ul>
                   </li>
+                   <li><a><i class="fa fa-tags"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?=site_url('hotspot')?>">Hotspot</a></li>
+                    </ul>
+                  </li>
                    <li><a><i class="fa fa-map"></i> LeafletJs <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?=site_url('leafletstandar')?>">Standar</a></li>

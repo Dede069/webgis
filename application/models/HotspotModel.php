@@ -3,7 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class HotspotModel extends CI_Model{
 	function get(){
-		$data=$this->db->get('t_hotspot');
+		$data=$this->db->select('*')
+					->from('t_hotspot a')
+					->join('m_kecamatan b','a.id_kecamatan=b.id_kecamatan','LEFT')
+					->get();
 		return $data;
 	}
 	function insert($data=array()){
