@@ -1,9 +1,10 @@
 <!-- Make sure you put this AFTER Leaflet's CSS -->
  	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
    crossorigin=""></script>
-
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHqhgVQmhdp3XAJ91LHRdXJ3YOjP1V2Gs" async defer></script>
 	<script src="<?=base_url('assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet.ajax.js')?>"></script>
+	<script src="<?=base_url('assets/js/Leaflet.GoogleMutant.js')?>"></script>
 
    <script type="text/javascript">
 
@@ -15,6 +16,11 @@
 	    id: 'mapbox.streets',
 	    accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
 	});
+	var roadMutant = L.gridLayer.googleMutant({
+			maxZoom: 24,
+			type:'roadmap'
+	});
+
 	map.addLayer(Layer);
 
 	var myStyle2 = {
@@ -24,15 +30,26 @@
 	};
 
 	function popUp(f,l){
-	    var out = [];
+	    var html='';
 	    if (f.properties){
-	        // for(key in f.properties){
-	        // 	console.log(key);
-
-	        // }
-			out.push("Provinsi: "+f.properties['PROVINSI']);
-			out.push("Kecamatan: "+f.properties['KECAMATAN']);
-	        l.bindPopup(out.join("<br />"));
+	    	html+='<table>';
+	    	html+='<tr>';
+		    	html+='<td colspan="3"><img src="<?=base_url('assets/icon-map.png')?>" width="100%"></td>';
+	    	html+='</tr>';
+	    	html+='<tr>';
+		    	html+='<td>Provinsi</td>';
+		    	html+='<td>:</td>';
+		    	html+='<td>'+f.properties['PROVINSI']+'</td>';
+	    	html+='</tr>';
+	    	html+='<tr>';
+		    	html+='<td>Kecamatan</td>';
+		    	html+='<td>:</td>';
+		    	html+='<td>'+f.properties['KECAMATAN']+'</td>';
+	    	html+='</tr>';
+	    	html+='</table>';
+	    	html+='<a href="<?=site_url('kecamatan')?>" target="_BLANK">'
+	    			+'<button  class="btn btn-info btn-sm" ><i class="fa fa-info"></i> Info</button></a>';
+	        l.bindPopup(html);
 	    }
 	}
 
@@ -68,6 +85,17 @@
 		{
 			name: "Outdoors",
 			layer: L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png')
+		},
+		{
+			name:'Satelite Google',
+			layer : L.gridLayer.googleMutant({
+				maxZoom: 24,
+				type:'satellite'
+			})
+		},
+		{
+			name: "Roadmap Google",
+			layer: roadMutant
 		}
 	];
 
