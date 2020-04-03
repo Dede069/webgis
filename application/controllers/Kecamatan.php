@@ -37,7 +37,7 @@ class Kecamatan extends CI_Controller {
 			];
 			// upload
 			if($_FILES['geojson_kecamatan']['name']!=''){
-				$upload=upload('geojson_kecamatan','geojson');
+				$upload=upload('geojson_kecamatan','geojson','geojson');
 				if($upload['info']==true){
 					$data['geojson_kecamatan']=$upload['upload_data']['file_name'];
 				}

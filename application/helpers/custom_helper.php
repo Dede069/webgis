@@ -37,17 +37,17 @@ function content_close(){
 function assets($file=''){
   return base_url('assets/'.$file);
 }
-function upload($name='file',$types="images"){
-  if($types=='images'){
+function upload($name='file',$folder='geojson',$types="image"){
+  if($types=='image'){
     $allowed_types='gif|jpg|png';
-    $config['max_width']    = 1024;
-    $config['max_height']   = 768;
+    // $config['max_width']    = 1024;
+    // $config['max_height']   = 768;
   }
   elseif($types=='geojson'){
     $allowed_types='geojson';
   }
   $CI =& get_instance();
-  $config['upload_path']          = './assets/unggah/geojson/';
+  $config['upload_path']          = './assets/unggah/'.$folder.'/';
   $config['allowed_types']        = $allowed_types;
   $config['max_size']             = 1000;
   $CI->load->library('upload', $config);

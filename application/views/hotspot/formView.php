@@ -7,7 +7,7 @@ $lat="";
 $lng="";
 $tanggal=date('Y-m-d');
 if($parameter=='ubah' && $id!=''){
-    $this->db->where('id_kecamatan',$id);
+    $this->db->where('id_hotspot',$id);
     $row=$this->Model->get()->row_array();
     extract($row);
 }

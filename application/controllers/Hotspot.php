@@ -42,7 +42,7 @@ class Hotspot extends CI_Controller {
 			];
 			// upload
 			if($_FILES['marker']['name']!=''){
-				$upload=upload('marker','marker');
+				$upload=upload('marker','marker','image');
 				if($upload['info']==true){
 					$data['marker']=$upload['upload_data']['file_name'];
 				}
