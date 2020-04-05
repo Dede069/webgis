@@ -46,6 +46,9 @@ function upload($name='file',$folder='geojson',$types="image"){
   elseif($types=='geojson'){
     $allowed_types='geojson';
   }
+  elseif($types=='csv'){
+    $allowed_types='csv';
+  }
   $CI =& get_instance();
   $config['upload_path']          = './assets/unggah/'.$folder.'/';
   $config['allowed_types']        = $allowed_types;

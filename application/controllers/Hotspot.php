@@ -67,7 +67,53 @@ class Hotspot extends CI_Controller {
 		}
 		redirect('hotspot');
 	}
+	
+	public function importcsv(){
+		if($this->input->post()){
+			if($_FILES['csv']['name']!=''){
+				$getKecamatan=$this->KecamatanModel->get();
+				$id_kecamatan=[];
+				foreach ($getKecamatan->result() as $row) {
+					$id_kecamatan[strtolower($row->nm_kecamatan)]=$row->id_kecamatan;
+				}
+				// print_r($id_kecamatan);
 
+				$upload=upload('csv','csv','csv');
+				if($upload['info']==true){
+					$filename=$upload['upload_data']['file_name'];
+					$file=FCPATH.'assets/unggah/csv/'.$filename;
+					$csv = array_map('str_getcsv', file($file));
+					foreach ($csv as $row) {
+						$data[]=[
+							'id_kecamatan'=>$id_kecamatan[strtolower($row[2])],
+							'keterangan'=>$row[3],
+							'lokasi'=>$row[1],
+							'lat'=>$row[4],
+							'lng'=>$row[5],
+							'tanggal'=>$row[6],
+						];
+					}
+					$this->Model->insert_batch($data);
+					unlink($file);
+					$info='<div class="alert alert-success alert-dismissible">
+				            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				            <h4><i class="icon fa fa-check"></i> Sukses!</h4> Import data dari CSV sukses </div>';
+				}
+				elseif($upload['info']==false){
+					$info='<div class="alert alert-danger alert-dismissible">
+	            		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	            		<h4><i class="icon fa fa-ban"></i> Error!</h4> '.$upload['message'].' </div>';
+				}
+			}
+			else{
+				$info='<div class="alert alert-danger alert-dismissible">
+	            		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	            		<h4><i class="icon fa fa-ban"></i> Error!</h4> Tidak ada file CSV yang diunggah</div>';
+			}
+		}
+		$this->session->set_flashdata('info',$info);
+		redirect('hotspot');
+	}
 	public function hapus($id=''){
 		// hapus file di dalam folder
 		$this->db->where('id_hotspot',$id);
