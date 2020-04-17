@@ -1,3 +1,3 @@
 <?=content_open('Halaman Beranda')?>
-      Add content to the page ...
+     <?=$this->session->flashdata('info')?>
 <?=content_close()?>

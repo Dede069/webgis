@@ -12,8 +12,8 @@
                 <img src="<?=templates('production/images/img.jpg')?>" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <span><?=$this->session->nm_pengguna?></span>
+                <h2><?=$this->session->level?></h2>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -27,11 +27,13 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   <li><a href="<?=site_url('')?>"><i class="fa fa-home"></i> Beranda</a></li>
+                  <?php if($this->session->level=='Admin'){ ?>
                   <li><a><i class="fa fa-folder"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?=site_url('kecamatan')?>">Kecamatan</a></li>
                     </ul>
                   </li>
+                  <?php } ?>
                    <li><a><i class="fa fa-tags"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?=site_url('hotspot')?>">Hotspot</a></li>
@@ -47,6 +49,7 @@
                       <li><a href="form_buttons.html">Form Buttons</a></li>
                     </ul>
                   </li>
+                  <li><a href="<?=site_url('auth/out')?>"><i class="fa fa-sign-out"></i> Keluar</a></li>
                 </ul>
               </div>
             </div>
