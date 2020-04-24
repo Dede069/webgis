@@ -12,7 +12,7 @@
     <!-- Font Awesome -->
     <link href="<?=templates('vendors/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
     <!-- NProgress -->
-    <link href=".<?=templates('vendors/nprogress/nprogress.css')?>" rel="stylesheet">
+    <link href="<?=templates('vendors/nprogress/nprogress.css')?>" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="<?=templates('build/css/custom.min.css')?>" rel="stylesheet">

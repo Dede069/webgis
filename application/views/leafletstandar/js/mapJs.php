@@ -5,11 +5,11 @@
 	<script src="<?=base_url('assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet.ajax.js')?>"></script>
 	<script src="<?=base_url('assets/js/Leaflet.GoogleMutant.js')?>"></script>
+	<script src="<?=site_url('api/data/kecamatan')?>"></script>
 
    <script type="text/javascript">
-
    	var map = L.map('map').setView([-3.824181, 114.8191513], 10);
-
+   	var layersKecamatan=[];
    	var Layer=L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 	    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 	    maxZoom: 18,
@@ -28,7 +28,14 @@
 	    "weight": 1,
 	    "opacity": 0.9
 	};
-
+	function getColorKecamatan(KODE){
+		for(i=0;i<dataKecamatan.length;i++){
+			var data=dataKecamatan[i];
+			if(data.kd_kecamatan==KODE){
+				return data.warna_kecamatan;
+			}
+		}
+	}
 	function popUp(f,l){
 	    var html='';
 	    if (f.properties){
@@ -59,19 +66,6 @@
 		return '<i class="icon" style="background-color:'+name+';border-radius:50%"></i>';
 	}
 
-	function featureToMarker(feature, latlng) {
-		return L.marker(latlng, {
-			icon: L.divIcon({
-				className: 'marker-'+feature.properties.amenity,
-				html: iconByName(feature.properties.amenity),
-				iconUrl: '../images/markers/'+feature.properties.amenity+'.png',
-				iconSize: [25, 41],
-				iconAnchor: [12, 41],
-				popupAnchor: [1, -34],
-				shadowSize: [41, 41]
-			})
-		});
-	}
 
 	var baseLayers = [
 		{
@@ -99,31 +93,31 @@
 		}
 	];
 
-	<?php
-		$getKecamatan=$this->KecamatanModel->get();
-		foreach ($getKecamatan->result() as $row) {
-			?>
+	for(i=0;i<dataKecamatan.length;i++){
+		var data=dataKecamatan[i];
+		var layer={
+			name: data.nm_kecamatan,
+			icon: iconByName(data.warna_kecamatan),
+			layer: new L.GeoJSON.AJAX(["assets/unggah/geojson/"+data.geojson_kecamatan],
+				{
+					onEachFeature:popUp,
+					style: function(feature){
+						var KODE=feature.properties.KODE;
+						return {
+							"color": getColorKecamatan(KODE),
+						    "weight": 1,
+						    "opacity": 1
+						}
 
-			var myStyle<?=$row->id_kecamatan?> = {
-			    "color": "<?=$row->warna_kecamatan?>",
-			    "weight": 1,
-			    "opacity": 1
-			};
-
-			<?php
-			$arrayKec[]='{
-			name: "'.$row->nm_kecamatan.'",
-			icon: iconByName("'.$row->warna_kecamatan.'"),
-			layer: new L.GeoJSON.AJAX(["assets/unggah/geojson/'.$row->geojson_kecamatan.'"],{onEachFeature:popUp,style: myStyle'.$row->id_kecamatan.',pointToLayer: featureToMarker }).addTo(map)
-			}';
-		}
-	?>
+					},
+				}).addTo(map)
+			}
+		layersKecamatan.push(layer);
+	}
 
 	var overLayers = [{
 		group: "Layer Kecamatan",
-		layers: [
-			<?=implode(',', $arrayKec);?>
-		]
+		layers: layersKecamatan
 	}
 	];
 
