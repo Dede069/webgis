@@ -17,6 +17,10 @@ Aplikasi GIS berbasis web standar yang dapat dikembangkan menjadi aplikasi yang 
 5. [Tutorial Webgis Codeigniter #PART 5 - Mengambil titik koordinat dari Peta (CRUD Hotspot)](https://youtu.be/O3PfVjA991Y)
 6. [Tutorial Webgis Codeigniter #PART 6 - Reverse Geocoding ESRI & Nominatim OSM](https://youtu.be/SVzq1lpOovc)
 7. [Tutorial Webgis Codeigniter #PART 7 - CRUD Hotpost (Finishing & Update Helper Upload)](https://youtu.be/7ZhmJ5QUhPE)
+8. [Tutorial Webgis Codeigniter #PART 8 - Import data dari file CSV)](https://youtu.be/Cu4clNUg9w0)
+9. [Tutorial Webgis Codeigniter #PART 9 - Membuat Hak Akses (Login)](https://youtu.be/URo2pOtCmUs)
+10. [Tutorial Webgis Codeigniter #PART 10 - Javascript untuk Peta dan PHP untuk Data)](https://youtu.be/7N8TIyEnp7A)
+11. [Tutorial Webgis Codeigniter #PART 11 - Menampilkan Point (GeoJSON))](https://youtu.be/Lo3vdvKgpIk)
 
 ## Tutorial WebGIS PHP
 1. [Tutorial WEBGIS PHP #PART 1 - Membuat Template Project](https://www.youtube.com/watch?v=WooDHdZ4eOo)
@@ -26,6 +30,7 @@ Aplikasi GIS berbasis web standar yang dapat dikembangkan menjadi aplikasi yang 
 5. [Tutorial WEBGIS PHP #PART 5 - Form Login (Hak Akses Aplikasi)](https://youtu.be/OFKtjSPD0jA)
 6. [Tutorial WEBGIS PHP #PART 6 - Upload FIle GeoJSON](https://youtu.be/aR9WTHl6gJ8)
 7. [Tutorial WEBGIS PHP #PART 7 - Apply GeoJSON ke Leaflet](https://youtu.be/iTRq9jlDdkg)
+8. [Tutorial WEBGIS PHP #PART 8 - Membuat Level Hak Akses Pengguna](https://youtu.be/yiwVEbhVgxo)
 
 
 ## Seri Lanjutan Tutorial WebGIS PHP & LeafletJs
@@ -45,14 +50,14 @@ Aplikasi GIS berbasis web standar yang dapat dikembangkan menjadi aplikasi yang 
 2. [Tutorial Leaflet - Kostumisasi Icon Marker (Point) sesuai Database](https://youtu.be/I6lFBH3J_Ts)
 
 # Donasi
-Jika dirasa Tutorial dan Coding yang aku share bermanfaat, tidak salahnya bagi kalian jika ingin berdonasi. untuk donasi kalian bisa melalui : 
+Jika dirasa Tutorial dan Coding yang aku share bermanfaat, tidak salahnya bagi kalian jika ingin memberi dukungan. kalian bisa melalui : 
 __BANK BRI__\
 __No. Rekening 023901023305509__\
 __An. Nasrullah Sidik__
 atau 
 https://trakteer.id/as.shiddiq
 
-Berapapun Donasi Anda, Saya ucapkan Terima kasih banyak :)
+Berapapun yang Anda Kirimkan, Saya ucapkan Terima kasih banyak :)
 
 Copyright © 2020 [Nasrullah Siddik](bit.ly/YTNSiddik). All rights reserved.
 
