@@ -8,9 +8,10 @@ class Api extends CI_Controller {
 	      redirect('auth');
 	    }
 	    $this->load->model('KecamatanModel');
+	    $this->load->model('HotspotModel');
 	}
 
-	public function data($jenis='kecamatan')
+	public function data($jenis='kecamatan',$type='point')
 	{
 		header('Content-Type: application/json');
 		$response=[];
@@ -26,6 +27,31 @@ class Api extends CI_Controller {
 				$response[]=$data;
 			}
 			echo "var dataKecamatan=".json_encode($response,JSON_PRETTY_PRINT);
+		}
+		elseif($jenis=='hotspot'){
+			if($type=='point'){
+				$getHotspot=$this->HotspotModel->get();
+				foreach ($getHotspot->result() as $row) {
+					$data=null;
+					$data['type']="Feature";
+					$data['properties']=[
+												"name"=>$row->lokasi,
+												"lokasi"=>$row->lokasi.' Kec. '.$row->nm_kecamatan,
+												"keterangan"=>$row->keterangan,
+												"tanggal"=>$row->tanggal,
+												"icon"=>($row->marker=='')?assets('icons/marker.png'):assets('unggah/marker/'.$row->marker),
+												"popUp"=>"Lokasi : ".$row->lokasi.", Kec. ".$row->nm_kecamatan."<br>Keterangan : ".$row->keterangan."<br>Tanggal : ".$row->tanggal
+												];
+					$data['geometry']=[
+												"type" => "Point",
+												"coordinates" => [$row->lng,$row->lat ] 
+												];	
+
+					$response[]=$data;
+				}
+				echo "var hotspotPoint=".json_encode($response,JSON_PRETTY_PRINT);	
+			}
+			
 		}
 		
 	}
