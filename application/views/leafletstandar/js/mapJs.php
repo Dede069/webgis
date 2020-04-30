@@ -57,6 +57,11 @@
 	    	html+='<a href="<?=site_url('kecamatan')?>" target="_BLANK">'
 	    			+'<button  class="btn btn-info btn-sm" ><i class="fa fa-info"></i> Info</button></a>';
 	        l.bindPopup(html);
+	        l.bindTooltip(f.properties['KECAMATAN'],{
+	        	permanent:true,
+	        	direction:"center",
+	        	className:"no-background"
+	        });
 	    }
 	}
 

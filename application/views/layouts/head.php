@@ -32,5 +32,13 @@
       .icon-bar {
         background: url('assets/js/leaflet-panel-layers-master/examples/images/icons/bar.png') center center no-repeat;
     }
+    .leaflet-tooltip.no-background{
+      background: transparent;
+      border:0;
+      box-shadow: none;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px #000,-1px 1px 1px #000,1px -1px 1px #000,-1px -1px 1px #000;
+    }
     </style>
   </head>
