@@ -1,3 +1,19 @@
+	<link rel="stylesheet" type="text/css" href="<?=base_url('assets/js/leaflet-search/dist/leaflet-search.min.css')?>">
+	<style type="text/css">
+		
+		.search-tip b {
+			display: inline-block;
+			clear: left;
+			float: right;
+			padding: 0 4px;
+			margin-left: 4px;
+		}
+
+		.Banjir.search-tip b,
+		.Banjir.leaflet-marker-icon {
+			background: #f66
+		}
+	</style>
 <!-- Make sure you put this AFTER Leaflet's CSS -->
  	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
    crossorigin=""></script>
@@ -5,6 +21,7 @@
 	<script src="<?=base_url('assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet.ajax.js')?>"></script>
 	<script src="<?=base_url('assets/js/Leaflet.GoogleMutant.js')?>"></script>
+	<script src="<?=base_url('assets/js/leaflet-search/dist/leaflet-search.src.js')?>"></script>
 	<script src="<?=site_url('api/data/kecamatan')?>"></script>
 	<script src="<?=site_url('api/data/hotspot/point')?>"></script>
 
@@ -116,7 +133,7 @@
 	// hostpot
 	var layersHotspotPoint=L.geoJSON(hotspotPoint, {
 	    pointToLayer: function (feature, latlng) {
-	    	console.log(feature)
+	    	// console.log(feature)
 	        return L.marker(latlng, {
 	        	icon : new L.icon({
 	        			iconUrl: feature.properties.icon,
@@ -130,8 +147,33 @@
 		    }
     	}
 	}).addTo(map);
-
 	// akhir dari hotspot
+	// pencarian
+	var poiLayers = L.layerGroup([
+		layersHotspotPoint
+	]);
+	L.control.search({
+		layer: poiLayers,
+		initial: false,
+		propertyName: 'name',
+		buildTip: function(text, val) {
+			// var jenis = val.layer.feature.properties.jenis;
+			// return '<a href="#" class="'+jenis+'">'+text+'<b>'+jenis+'</b></a>';
+			return '<a href="#" >'+text+'</a>';
+		},
+		marker: {
+			icon: "",
+			circle: {
+				radius: 20,
+				color: '#f32',
+				opacity: 1,
+				weight:5
+			}
+		}
+	}).addTo(map);
+	// end pencarian
+
+
 
 	// registrasikan untuk panel layer
 	var overLayers = [{
