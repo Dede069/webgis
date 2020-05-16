@@ -43,6 +43,7 @@
                     <ul class="nav child_menu">
                       <li><a href="<?=site_url('leafletstandar')?>">Standar</a></li>
                       <li><a href="<?=site_url('leafletpoint')?>">Point</a></li>
+                      <li><a href="<?=site_url('leafletroutingmachine')?>">Routing Machine</a></li>
                     </ul>
                   </li>
                   <li><a href="<?=site_url('auth/out')?>"><i class="fa fa-sign-out"></i> Keluar</a></li>
