@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2020 at 08:10 AM
+-- Generation Time: May 21, 2020 at 07:22 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -88,31 +88,32 @@ CREATE TABLE `t_hotspot` (
   `lat` float(9,6) NOT NULL,
   `lng` float(9,6) NOT NULL,
   `tanggal` date NOT NULL,
-  `marker` varchar(50) NOT NULL
+  `marker` varchar(50) NOT NULL,
+  `polygon` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_hotspot`
 --
 
-INSERT INTO `t_hotspot` (`id_hotspot`, `id_kecamatan`, `lokasi`, `keterangan`, `lat`, `lng`, `tanggal`, `marker`) VALUES
-(1, 18, 'Jl. Peganggas gas amat', 'Kebakaran Parah sekali, tes', -3.641010, 114.775002, '2019-12-19', ''),
-(2, 6, 'Jl. Pegangga', 'Kebakaran Parah sekali', -3.656000, 114.775002, '2019-12-19', ''),
-(3, 18, 'Jl. Raya', 'Rusak parah', -3.816298, 114.797401, '2019-12-20', ''),
-(4, 18, 'Jl A', 'Rusak parah', -3.817160, 114.800987, '2019-12-20', ''),
-(5, 19, 'Jl. Sepeda', '-', -3.641010, 114.675003, '2020-01-20', ''),
-(6, 6, 'Rumah Saiful', '-', -3.661010, 114.775002, '2020-01-20', ''),
-(7, 21, 'Rmah Jakaria', '-', -3.846298, 114.897400, '2020-01-20', ''),
-(8, 22, 'HUtan Rawa Merawa', '-', -3.761010, 114.857399, '2020-01-20', ''),
-(9, 18, 'Gang Jambu', 'Rumah Terbakar', -3.817130, 114.801888, '2020-02-11', ''),
-(10, 6, 'Gedung Pencakar', 'Lantai 4 terbakars', -3.655300, 114.696503, '2020-02-11', ''),
-(11, 6, 'Pasar Kaki Lima', '4 Loket terbakar', -3.655300, 114.686501, '2020-02-11', ''),
-(12, 6, 'Jl. Peganggas gas amat', 'tes', -3.655300, 114.775246, '2020-02-24', ''),
-(13, 6, 'Jalan baru', 'tes', -3.776559, 114.777824, '2020-03-21', ''),
-(14, 18, 'RW. 07, Kel. Angsau, Angsau, South Kalimantan, 708', 'dfdf', -3.802937, 114.775772, '2020-04-03', ''),
-(15, 18, 'Mushola Nurul Ibadah, Jalan Samudera, RT 10 Desa P', 'tes', -3.803622, 114.762718, '2020-04-03', ''),
-(16, 6, 'RT 07, KEL. SARANG HALANG, Sarang Halang, South Ka', 'dfdf', -3.814585, 114.781960, '2020-04-03', ''),
-(17, 6, 'Matah, RT 27 Desa Pelaihari, Karang Taruna, South', 'tes', -3.802595, 114.758598, '2020-04-03', '');
+INSERT INTO `t_hotspot` (`id_hotspot`, `id_kecamatan`, `lokasi`, `keterangan`, `lat`, `lng`, `tanggal`, `marker`, `polygon`) VALUES
+(1, 0, 'DUSUN 02, DESA PEMUDA, South Kalimantan, Indonesia', 'Kebakaran Parah sekali, tes', -3.760801, 114.804382, '2019-12-19', '912001201139572.png', '[[{\"lat\":-3.856376108197493,\"lng\":114.79202270507814},{\"lat\":-3.7608006145354813,\"lng\":114.80369567871095},{\"lat\":-3.7762167325811986,\"lng\":114.84420776367189},{\"lat\":-3.821778321387658,\"lng\":114.88128662109375}]]'),
+(2, 6, 'Jl. Pegangga', 'Kebakaran Parah sekali', -3.656000, 114.775002, '2019-12-19', '', NULL),
+(3, 18, 'Jl. Raya', 'Rusak parah', -3.816298, 114.797401, '2019-12-20', '', NULL),
+(4, 18, 'Jl A', 'Rusak parah', -3.817160, 114.800987, '2019-12-20', '', NULL),
+(5, 19, 'Jl. Sepeda', '-', -3.641010, 114.675003, '2020-01-20', '', NULL),
+(6, 6, 'Rumah Saiful', '-', -3.661010, 114.775002, '2020-01-20', '', NULL),
+(7, 21, 'Rmah Jakaria', '-', -3.846298, 114.897400, '2020-01-20', '', NULL),
+(8, 22, 'HUtan Rawa Merawa', '-', -3.761010, 114.857399, '2020-01-20', '', NULL),
+(9, 18, 'Gang Jambu', 'Rumah Terbakar', -3.817130, 114.801888, '2020-02-11', '', NULL),
+(10, 6, 'Gedung Pencakar', 'Lantai 4 terbakars', -3.655300, 114.696503, '2020-02-11', '', NULL),
+(11, 6, 'Pasar Kaki Lima', '4 Loket terbakar', -3.655300, 114.686501, '2020-02-11', '', NULL),
+(12, 6, 'Jl. Peganggas gas amat', 'tes', -3.655300, 114.775246, '2020-02-24', '', NULL),
+(13, 6, 'Jalan baru', 'tes', -3.776559, 114.777824, '2020-03-21', '', NULL),
+(14, 18, 'RW. 07, Kel. Angsau, Angsau, South Kalimantan, 708', 'dfdf', -3.802937, 114.775772, '2020-04-03', '', NULL),
+(15, 18, 'Mushola Nurul Ibadah, Jalan Samudera, RT 10 Desa P', 'tes', -3.803622, 114.762718, '2020-04-03', '', NULL),
+(16, 6, 'RT 07, KEL. SARANG HALANG, Sarang Halang, South Ka', 'dfdf', -3.814585, 114.781960, '2020-04-03', '', NULL),
+(17, 6, 'Matah, RT 27 Desa Pelaihari, Karang Taruna, South', 'tes', -3.802595, 114.758598, '2020-04-03', '', NULL);
 
 --
 -- Indexes for dumped tables
