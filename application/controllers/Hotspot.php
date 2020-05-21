@@ -39,6 +39,7 @@ class Hotspot extends CI_Controller {
 				'lat'=>$this->input->post('lat'),
 				'lng'=>$this->input->post('lng'),
 				'tanggal'=>$this->input->post('tanggal'),
+				'polygon'=>$this->input->post('polygon'),
 			];
 			// upload
 			if($_FILES['marker']['name']!=''){

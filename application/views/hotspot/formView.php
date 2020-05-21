@@ -5,6 +5,7 @@ $lokasi="";
 $keterangan="";
 $lat="";
 $lng="";
+$polygon="";
 $tanggal=date('Y-m-d');
 if($parameter=='ubah' && $id!=''){
     $this->db->where('id_hotspot',$id);
@@ -81,6 +82,7 @@ if($parameter=='ubah' && $id!=''){
     <div class="col-md-6">
         <h3>Pilih Titik</h3>
         <div id="map" style="height: 400px"></div>
+        <?=textarea('polygon',$polygon,'','style="display:none"')?>
     </div>
     <div class="col-md-12">
         <hr>

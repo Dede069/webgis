@@ -1,3 +1,4 @@
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
 <!-- Make sure you put this AFTER Leaflet's CSS -->
  	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
    crossorigin=""></script>
@@ -15,7 +16,7 @@
   <script src="https://unpkg.com/esri-leaflet-geocoder@2.3.2/dist/esri-leaflet-geocoder.js"
     integrity="sha512-8twnXcrOGP3WfMvjB0jS5pNigFuIWj4ALwWEgxhZ+mxvjF5/FBPVd5uAxqT8dd2kUmTVK9+yQJ4CmTmSg/sXAQ=="
     crossorigin=""></script>
-
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
    <script type="text/javascript">
    	var latInput=document.querySelector("[name=lat]");
@@ -77,5 +78,53 @@
 	      	}
 	      }
 	    });
-	})
+	});
+
+	// draw
+	// FeatureGroup is to store editable layers
+
+	 var drawnItems = new L.FeatureGroup();
+	 map.addLayer(drawnItems);
+	var latlngs = JSON.parse($("[name=polygon]").val());
+	var polygon = L.polygon(latlngs, {color: 'red'}).addTo(drawnItems);
+
+     var drawControl = new L.Control.Draw({
+     	draw:{
+     		polyline:false,
+     		rectangle:false,
+     		circle:false,
+     		marker:false,
+     		circlemarker:false
+     	},
+         edit: {
+             featureGroup: drawnItems
+         }
+     });
+     map.addControl(drawControl);
+     map.on('draw:created', function (e) {
+     	console.log("Created")
+	   var type = e.layerType,
+	       layer = e.layer;
+	   var latLng=layer.getLatLngs();
+	    console.log(latLng);
+
+	    $("[name=polygon]").val(JSON.stringify(latLng));
+	   // if (type === 'marker') {
+	   //     // Do marker specific actions
+	   // }
+	   // Do whatever else you need to. (save to db; add to map etc)
+	   drawnItems.addLayer(layer);
+	});
+
+     map.on('draw:edited',function(e){
+     	console.log('edited');
+     	var latLng=e.layers.getLayers()[0].getLatLngs();
+     	
+	    $("[name=polygon]").val(JSON.stringify(latLng));
+     })
+     map.on('draw:deleted',function(e){
+     	console.log('deleted');
+     	
+	    $("[name=polygon]").val("");
+     })
    </script>
