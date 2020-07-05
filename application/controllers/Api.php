@@ -51,6 +51,16 @@ class Api extends CI_Controller {
 				}
 				echo "var hotspotPoint=".json_encode($response,JSON_PRETTY_PRINT);	
 			}
+			elseif($type=="polygon"){
+				$getHotspot=$this->HotspotModel->get();
+				$polygon=null;
+				foreach ($getHotspot->result() as $row) {
+					if($row->polygon!=NULL){
+						$polygon[]=$row->polygon;
+					}
+				}
+				echo "var latlngs=[".implode(',', $polygon)."];";
+			}
 			
 		}
 		

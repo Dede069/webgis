@@ -85,8 +85,10 @@
 
 	 var drawnItems = new L.FeatureGroup();
 	 map.addLayer(drawnItems);
-	var latlngs = JSON.parse($("[name=polygon]").val());
-	var polygon = L.polygon(latlngs, {color: 'red'}).addTo(drawnItems);
+	 if($("[name=polygon]").val()!=""){
+		var latlngs = JSON.parse($("[name=polygon]").val());
+		var polygon = L.polygon(latlngs, {color: 'red'}).addTo(drawnItems);
+	 }
 
      var drawControl = new L.Control.Draw({
      	draw:{
