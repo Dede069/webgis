@@ -1,6 +1,11 @@
 <?php
-function templates($a=''){
-	return base_url('assets/templates/gentelella/'.$a);
+function templates($a='',$b=""){
+  if($b=='website'){
+    return base_url('assets/templates/safario/'.$a);
+  }
+  else{
+	 return base_url('assets/templates/gentelella/'.$a);
+  }
 }
 function content_open($title=''){
 	return '<div class="">
