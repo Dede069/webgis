@@ -17,6 +17,7 @@
     integrity="sha512-8twnXcrOGP3WfMvjB0jS5pNigFuIWj4ALwWEgxhZ+mxvjF5/FBPVd5uAxqT8dd2kUmTVK9+yQJ4CmTmSg/sXAQ=="
     crossorigin=""></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+	<script src="<?=base_url('assets/js/leaflet.ajax.js')?>"></script>
 
    <script type="text/javascript">
    	var latInput=document.querySelector("[name=lat]");
@@ -35,8 +36,9 @@
 	});
 	map.addLayer(Layer);
 
-
-	map.on("click",function(e){
+	///
+	var kabupaten = new L.GeoJSON.AJAX("<?=base_url()?>assets/geojson/tanahlaut.geojson").addTo(map);
+	kabupaten.on("click",function(e){
 		var lat=e.latlng.lat;
 		var lng=e.latlng.lng;
 		if(!marker){
