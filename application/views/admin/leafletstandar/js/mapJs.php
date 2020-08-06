@@ -1,9 +1,11 @@
+	<link rel="stylesheet" href="<?=base_url('assets/js/leaflet-compass-master/src/leaflet-compass.css')?>" />
 <!-- Make sure you put this AFTER Leaflet's CSS -->
  	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
    crossorigin=""></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHqhgVQmhdp3XAJ91LHRdXJ3YOjP1V2Gs" async defer></script>
 	<script src="<?=base_url('assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet.ajax.js')?>"></script>
+	<script src="<?=base_url('assets/js/leaflet-compass-master/src/leaflet-compass.js')?>"></script>
 	<script src="<?=base_url('assets/js/Leaflet.GoogleMutant.js')?>"></script>
 	<script src="<?=site_url('admin/api/data/kecamatan')?>"></script>
 
@@ -131,6 +133,11 @@
 	});
 
 	map.addControl(panelLayers);
+	map.addControl( new L.Control.Compass({
+		position:'topleft',
+		autoActive:true,
+		showDigit:true
+	}) );
 
 
 
