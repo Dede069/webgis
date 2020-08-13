@@ -47,6 +47,11 @@
                       <li><a href="<?=site_url('admin/leafletpolygon')?>">Polygon</a></li>
                     </ul>
                   </li>
+                   <li><a><i class="fa fa-question"></i> Mencoba Menjawab <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?=site_url('admin/mmbagian10')?>">Bagian 10</a></li>
+                    </ul>
+                  </li>
                   <li><a href="<?=site_url('admin/auth/out')?>"><i class="fa fa-sign-out"></i> Keluar</a></li>
                 </ul>
               </div>
