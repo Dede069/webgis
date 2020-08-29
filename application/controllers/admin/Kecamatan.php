@@ -36,6 +36,35 @@ class Kecamatan extends CI_Controller {
 	public function simpan()
 	{
 		if($this->input->post()){
+
+			// cek validasi
+			$validation=null;
+			// cek kode apakah sudah ada
+			if($this->input->post('id_kecamatan')!=""){
+				$this->db->where('id_kecamatan !='.$this->input->post('id_kecamatan'));
+			}
+			$this->db->where('kd_kecamatan',$this->input->post('kd_kecamatan'));
+			$check=$this->db->get('m_kecamatan');
+			if($check->num_rows()>0){
+				$validation[]='Kode Kecamatan Sudah Ada';
+			}
+			//tidak boleh kosong
+			if($this->input->post('nm_kecamatan')==''){
+				$validation[]='Nama Kecamatan Tidak Boleh Kosong';
+			}
+
+
+			if(count($validation)>0){
+				$this->session->set_flashdata('error_validation',$validation);
+				$this->session->set_flashdata('error_value',$_POST);
+				redirect($_SERVER['HTTP_REFERER']);
+				return false;
+			}
+			// cek validasi
+
+
+
+
 			$data=[
 				'kd_kecamatan'=>$this->input->post('kd_kecamatan'),
 				'nm_kecamatan'=>$this->input->post('nm_kecamatan'),

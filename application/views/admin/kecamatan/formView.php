@@ -9,8 +9,22 @@ if($parameter=='ubah' && $id!=''){
     $row=$this->Model->get()->row_array();
     extract($row);
 }
+
+// value ketika validasi
+if($this->session->flashdata('error_value')){
+    extract($this->session->flashdata('error_value'));
+}
+
 ?>
 <?=content_open('Form Kecamatan')?>
+    <?php
+        // menampilkan error validasi
+        if($this->session->flashdata('error_validation')){
+            foreach ($this->session->flashdata('error_validation') as $key => $value) {
+                echo '<div class="alert alert-danger">'.$value.'</div>';
+            }
+        }
+    ?>
     <form method="post" action="<?=site_url($url.'/simpan')?>" enctype="multipart/form-data">
         <?=input_hidden('parameter',$parameter)?>
     	<?=input_hidden('id_kecamatan',$id_kecamatan)?>
