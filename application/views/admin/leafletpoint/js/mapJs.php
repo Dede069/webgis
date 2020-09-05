@@ -23,11 +23,12 @@
 	<script src="<?=base_url('assets/js/Leaflet.GoogleMutant.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet-search/dist/leaflet-search.src.js')?>"></script>
 	<script src="<?=site_url('admin/api/data/kecamatan')?>"></script>
-	<script src="<?=site_url('admin/api/data/hotspot/point')?>"></script>
+	<script src="<?=site_url('admin/api/data/kategorihotspot')?>"></script>
 
    <script type="text/javascript">
    	var map = L.map('map').setView([-3.824181, 114.8191513], 10);
    	var layersKecamatan=[];
+   	var layersKategorihotspot=[];
    	var Layer=L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 	    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 	    maxZoom: 18,
@@ -45,6 +46,11 @@
 
 	function iconByName(name) {
 		return '<i class="icon" style="background-color:'+name+';border-radius:50%"></i>';
+	}
+
+
+	function iconByImage(image) {
+		return '<img src="'+image+'" style="width:16px">';
 	}
 
 
@@ -128,49 +134,58 @@
 			}
 		layersKecamatan.push(layer);
 	}
+	//kategori hotspot
+	for(i=0;i<dataKategorihotspot.length;i++){
+		var data=dataKategorihotspot[i];
+		var layer={
+			name: data.nm_kategori_hotspot,
+			icon: iconByImage(data.icon),
+			layer: new L.GeoJSON.AJAX(["<?=site_url('admin/api/data/hotspot/point')?>/"+data.id_kategori_hotspot],
+				{
+					 pointToLayer: function (feature, latlng) {
+				    	// console.log(feature)
+				        return L.marker(latlng, {
+				        	icon : new L.icon({
+				        			iconUrl: feature.properties.icon,
+							    	iconSize: [38, 45]
+			        				})
+				        });
+				    },
+			    	onEachFeature: function(feature,layer){
+			    		 if (feature.properties && feature.properties.name) {
+					        layer.bindPopup(feature.properties.popUp);
+					    }
+			    	}
+				}).addTo(map)
+			}
+		layersKategorihotspot.push(layer);
+	}
 	// end pengaturan untuk layer kecamatan
 
-	// hostpot
-	var layersHotspotPoint=L.geoJSON(hotspotPoint, {
-	    pointToLayer: function (feature, latlng) {
-	    	// console.log(feature)
-	        return L.marker(latlng, {
-	        	icon : new L.icon({
-	        			iconUrl: feature.properties.icon,
-				    	iconSize: [38, 45]
-        				})
-	        });
-	    },
-    	onEachFeature: function(feature,layer){
-    		 if (feature.properties && feature.properties.name) {
-		        layer.bindPopup(feature.properties.popUp);
-		    }
-    	}
-	}).addTo(map);
 	// akhir dari hotspot
 	// pencarian
-	var poiLayers = L.layerGroup([
-		layersHotspotPoint
-	]);
-	L.control.search({
-		layer: poiLayers,
-		initial: false,
-		propertyName: 'name',
-		buildTip: function(text, val) {
-			// var jenis = val.layer.feature.properties.jenis;
-			// return '<a href="#" class="'+jenis+'">'+text+'<b>'+jenis+'</b></a>';
-			return '<a href="#" >'+text+'</a>';
-		},
-		marker: {
-			icon: "",
-			circle: {
-				radius: 20,
-				color: '#f32',
-				opacity: 1,
-				weight:5
-			}
-		}
-	}).addTo(map);
+	// var poiLayers = L.layerGroup([
+	// 	layersHotspotPoint
+	// ]);
+	// L.control.search({
+	// 	layer: poiLayers,
+	// 	initial: false,
+	// 	propertyName: 'name',
+	// 	buildTip: function(text, val) {
+	// 		// var jenis = val.layer.feature.properties.jenis;
+	// 		// return '<a href="#" class="'+jenis+'">'+text+'<b>'+jenis+'</b></a>';
+	// 		return '<a href="#" >'+text+'</a>';
+	// 	},
+	// 	marker: {
+	// 		icon: "",
+	// 		circle: {
+	// 			radius: 20,
+	// 			color: '#f32',
+	// 			opacity: 1,
+	// 			weight:5
+	// 		}
+	// 	}
+	// }).addTo(map);
 	// end pencarian
 
 
@@ -179,14 +194,9 @@
 	var overLayers = [{
 		group: "Layer Kecamatan",
 		layers: layersKecamatan
-	},
-	{
-		group: "Titik Hotspot",
-		layers: [{
-					name: "Semua Titik",
-					icon: iconByName("#009"),
-					layer: layersHotspotPoint
-			}]
+	},{
+		group: "Kategori Hotspot",
+		layers: layersKategorihotspot
 	}
 	];
 

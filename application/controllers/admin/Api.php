@@ -9,9 +9,10 @@ class Api extends CI_Controller {
 	    }
 	    $this->load->model('KecamatanModel');
 	    $this->load->model('HotspotModel');
+	    $this->load->model('KategorihotspotModel');
 	}
 
-	public function data($jenis='kecamatan',$type='point')
+	public function data($jenis='kecamatan',$type='point',$id='')
 	{
 		header('Content-Type: application/json');
 		$response=[];
@@ -28,8 +29,20 @@ class Api extends CI_Controller {
 			}
 			echo "var dataKecamatan=".json_encode($response,JSON_PRETTY_PRINT);
 		}
+		if($jenis=='kategorihotspot'){
+			$getKategorihotspot=$this->KategorihotspotModel->get();
+			foreach ($getKategorihotspot->result() as $row) {
+				$data=null;
+				$data['id_kategori_hotspot']=$row->id_kategori_hotspot;
+				$data['nm_kategori_hotspot']=$row->nm_kategori_hotspot;
+				$data['icon']=($row->marker=='')?assets('icons/marker.png'):assets('unggah/marker/'.$row->marker);
+				$response[]=$data;
+			}
+			echo "var dataKategorihotspot=".json_encode($response,JSON_PRETTY_PRINT);
+		}
 		elseif($jenis=='hotspot'){
 			if($type=='point'){
+				$this->db->where('a.id_kategori_hotspot',$id);
 				$getHotspot=$this->HotspotModel->get();
 				foreach ($getHotspot->result() as $row) {
 					$data=null;
@@ -49,7 +62,7 @@ class Api extends CI_Controller {
 
 					$response[]=$data;
 				}
-				echo "var hotspotPoint=".json_encode($response,JSON_PRETTY_PRINT);	
+				echo json_encode($response,JSON_PRETTY_PRINT);	
 			}
 			elseif($type=="polygon"){
 				$getHotspot=$this->HotspotModel->get();

@@ -7,7 +7,7 @@ if($parameter=='ubah' && $id!=''){
     extract($row);
 }
 ?>
-<?=content_open('Form Hotspot')?>
+<?=content_open($title)?>
     <form method="post" action="<?=site_url($url.'/simpan')?>" enctype="multipart/form-data">
     	<?=input_hidden('id_kategori_hotspot',$id_kategori_hotspot)?>
         <?=input_hidden('parameter',$parameter)?>
