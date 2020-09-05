@@ -31,6 +31,7 @@
                   <li><a><i class="fa fa-folder"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?=site_url('admin/kecamatan')?>">Kecamatan</a></li>
+                      <li><a href="<?=site_url('admin/kategorihotspot')?>">Kategori Hotspot</a></li>
                     </ul>
                   </li>
                   <?php } ?>

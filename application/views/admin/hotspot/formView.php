@@ -6,6 +6,7 @@ $keterangan="";
 $lat="";
 $lng="";
 $polygon="";
+$id_kategori_hotspot="";
 $tanggal=date('Y-m-d');
 if($parameter=='ubah' && $id!=''){
     $this->db->where('id_hotspot',$id);
@@ -69,14 +70,24 @@ if($parameter=='ubah' && $id!=''){
     			</div>
     		</div>
     	</div>
-    	<div class="form-group">
-    		<label>Marker</label>
-    		<div class="row">
-	    		<div class="col-md-10">
-    				<?=input_file('marker','')?>
-    			</div>
-    		</div>
-    	</div>
+    	
+        
+        <div class="form-group">
+            <label>Kategori</label>
+            <div class="row">
+                <div class="col-md-10">
+                    <?php
+                        $op=null;
+                        $op['']='Pilih Kategori';
+                        $get=$this->KategorihotspotModel->get();
+                        foreach ($get->result() as $row) {
+                            $op[$row->id_kategori_hotspot]=$row->nm_kategori_hotspot;
+                        }
+                    ?>
+                    <?=select('id_kategori_hotspot',$op,$id_kategori_hotspot)?>
+                </div>
+            </div>
+        </div>
 
     </div>
     <div class="col-md-6">

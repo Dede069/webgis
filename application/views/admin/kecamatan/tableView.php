@@ -5,12 +5,12 @@
 <table class="table table-bordered">
 	<thead>
 		<tr>
-			<th>No</th>
+			<th class="text-center" width="50px">No</th>
 			<th>Kode</th>
 			<th>Nama Kecamatan</th>
 			<th>GeoJSON</th>
 			<th>Warna</th>
-			<th>Aksi</th>
+			<th width="200px">Aksi</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,14 +19,16 @@
 			foreach ($datatable->result() as $row) {
 				?>
 					<tr>
-						<td><?=$no?></td>
+						<td class="text-center"><?=$no?></td>
 						<td><?=$row->kd_kecamatan?></td>
 						<td><?=$row->nm_kecamatan?></td>
 						<td><a href="<?=assets('unggah/geojson/'.$row->geojson_kecamatan)?>" target="_BLANK"><?=$row->geojson_kecamatan?></a></td>
 						<td style="background: <?=$row->warna_kecamatan?>"></td>
-						<td>
-							<a href="<?=site_url($url.'/form/ubah/'.$row->id_kecamatan)?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
-							<a href="<?=site_url($url.'/hapus/'.$row->id_kecamatan)?>" class="btn btn-danger" onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
+						<td class="text-center">
+							<div class="btn-group">
+								<a href="<?=site_url($url.'/form/ubah/'.$row->id_kecamatan)?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
+								<a href="<?=site_url($url.'/hapus/'.$row->id_kecamatan)?>" class="btn btn-danger" onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
+							</div>
 						</td>
 					</tr>
 				<?php

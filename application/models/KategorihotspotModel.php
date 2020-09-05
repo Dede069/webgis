@@ -1,24 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class HotspotModel extends CI_Model{
+class KategorihotspotModel extends CI_Model{
 	function get(){
-		$data=$this->db->select('*')
-					->from('t_hotspot a')
-					->join('m_kecamatan b','a.id_kecamatan=b.id_kecamatan','LEFT')
-					->join('m_kategori_hotspot c','a.id_kategori_hotspot=c.id_kategori_hotspot','LEFT')
-					->get();
+		$data=$this->db->get('m_kategori_hotspot');
 		return $data;
 	}
 	function insert($data=array()){
-		$this->db->insert('t_hotspot',$data);
-		$info='<div class="alert alert-success alert-dismissible">
-	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	            <h4><i class="icon fa fa-check"></i> Sukses!</h4> Data Sukses Ditambah </div>';
-	    $this->session->set_flashdata('info',$info);
-	}
-	function insert_batch($data=array()){
-		$this->db->insert_batch('t_hotspot',$data);
+		$this->db->insert('m_kategori_hotspot',$data);
 		$info='<div class="alert alert-success alert-dismissible">
 	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 	            <h4><i class="icon fa fa-check"></i> Sukses!</h4> Data Sukses Ditambah </div>';
@@ -28,7 +17,7 @@ class HotspotModel extends CI_Model{
 		foreach ($where as $key => $value) {
 			$this->db->where($key,$value);
 		}
-		$this->db->update('t_hotspot',$data);
+		$this->db->update('m_kategori_hotspot',$data);
 		$info='<div class="alert alert-success alert-dismissible">
 		                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 		                <h4><i class="icon fa fa-check"></i> Sukses!</h4> Data Sukses diubah </div>';
@@ -38,7 +27,7 @@ class HotspotModel extends CI_Model{
 		foreach ($where as $key => $value) {
 			$this->db->where($key,$value);
 		}
-		$this->db->delete('t_hotspot');
+		$this->db->delete('m_kategori_hotspot');
 		$info='<div class="alert alert-success alert-dismissible">
 	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 	            <h4><i class="icon fa fa-check"></i> Sukses!</h4> Data Sukses dihapus </div>';

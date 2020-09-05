@@ -1,8 +1,5 @@
 <?=content_open($title)?>
 <a href="<?=site_url($url.'/form/tambah')?>" class="btn btn-success" ><i class="fa fa-plus"></i> Tambah</a>
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-	<i class="fa fa-upload"></i> Import CSV
-</button>
 <hr>
 <?=$this->session->flashdata('info')?>
 
@@ -10,13 +7,8 @@
 	<thead>
 		<tr>
 			<th width="50px" class="text-center">No</th>
-			<th>Lokasi</th>
-			<th>Nama Kecamatan</th>
-			<th>Keterangan</th>
-			<th>Lat</th>
-			<th>Lng</th>
-			<th>Tanggal</th>
-			<th>Kategori</th>
+			<th>Nama Kategori</th>
+			<th>Marker</th>
 			<th width="200px">Aksi</th>
 		</tr>
 	</thead>
@@ -27,17 +19,12 @@
 				?>
 					<tr>
 						<td class="text-center"><?=$no?></td>
-						<td><?=$row->lokasi?></td>
-						<td><?=$row->nm_kecamatan?></td>
-						<td><?=$row->keterangan?></td>
-						<td><?=$row->lat?></td>
-						<td><?=$row->lng?></td>
-						<td><?=$row->tanggal?></td>
 						<td><?=$row->nm_kategori_hotspot?></td>
+						<td class="text-center"><?=($row->marker==''?'-':'<img src="'.assets('unggah/marker/'.$row->marker).'" width="40px">')?></td>
 						<td class="text-center">
 							<div class="btn-group">
-								<a href="<?=site_url($url.'/form/ubah/'.$row->id_hotspot)?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
-								<a href="<?=site_url($url.'/hapus/'.$row->id_hotspot)?>" class="btn btn-danger" onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
+								<a href="<?=site_url($url.'/form/ubah/'.$row->id_kategori_hotspot)?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
+								<a href="<?=site_url($url.'/hapus/'.$row->id_kategori_hotspot)?>" class="btn btn-danger" onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
 							</div>
 						</td>
 					</tr>

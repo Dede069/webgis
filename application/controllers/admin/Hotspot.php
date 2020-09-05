@@ -7,6 +7,7 @@ class Hotspot extends CI_Controller {
 		parent::__construct();
 		$this->load->model('HotspotModel','Model');
 		$this->load->model('KecamatanModel');
+		$this->load->model('KategorihotspotModel');
 	}
 
 	public function index()
@@ -34,6 +35,7 @@ class Hotspot extends CI_Controller {
 		if($this->input->post()){
 			$data=[
 				'id_kecamatan'=>$this->input->post('id_kecamatan'),
+				'id_kategori_hotspot'=>$this->input->post('id_kategori_hotspot'),
 				'keterangan'=>$this->input->post('keterangan'),
 				'lokasi'=>$this->input->post('lokasi'),
 				'lat'=>$this->input->post('lat'),
