@@ -22,7 +22,7 @@
 	<script src="<?=base_url('assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.js')?>"></script>
     <script src="<?=base_url('assets/js/leaflet-routing-machine/examples/Control.Geocoder.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet-search/dist/leaflet-search.src.js')?>"></script>
-	<script src="<?=site_url('admin/api/data/hotspot/point')?>"></script>
+	<script src="<?=site_url('admin/api/data/hotspot/varpoint')?>"></script>
 
    <script type="text/javascript">
    	let latLng=[-3.824181, 114.8191513];

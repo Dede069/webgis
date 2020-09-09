@@ -23,7 +23,7 @@
 	<script src="<?=base_url('assets/js/Leaflet.GoogleMutant.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet-search/dist/leaflet-search.src.js')?>"></script>
 	<script src="<?=site_url('admin/api/data/kecamatan')?>"></script>
-	<script src="<?=site_url('admin/api/data/hotspot/point')?>"></script>
+	<script src="<?=site_url('admin/api/data/hotspot/varpoint')?>"></script>
 
    <script type="text/javascript">
    	var map = L.map('map').setView([-3.824181, 114.8191513], 10);
