@@ -21,6 +21,7 @@
 	<script src="<?=base_url('assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet.ajax.js')?>"></script>
 	<script src="<?=base_url('assets/js/Leaflet.GoogleMutant.js')?>"></script>
+	<script src="<?=base_url('assets/node_modules/leaflet-easyprint/dist/bundle.js')?>"></script>
 	<script src="<?=base_url('assets/js/leaflet-search/dist/leaflet-search.src.js')?>"></script>
 	<script src="<?=site_url('admin/api/data/kecamatan')?>"></script>
 	<script src="<?=site_url('admin/api/data/kategorihotspot')?>"></script>
@@ -41,7 +42,14 @@
 	});
 
 	map.addLayer(Layer);
-
+	// easy print
+	L.easyPrint({
+		title: 'Leaflet EasyPrint',
+		position: 'topleft',
+		exportOnly: true,
+		filename :'WebGIS CI',
+		sizeModes: ['Current','A4Portrait', 'A4Landscape']
+	}).addTo(map);
 	// pengaturan legend
 
 	function iconByName(name) {
