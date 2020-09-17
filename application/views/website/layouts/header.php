@@ -2,7 +2,12 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container box_1620">
-          <a class="navbar-brand logo_h" href="index.html"><img src="<?=templates('img/logo.png','website')?>" alt=""></a>
+          <div class="navbar-brand logo_h">
+            <img src="<?=base_url('assets/images/icons/logo.png')?>" style="width: 40px;float:left;margin-top:5px;margin-right: 5px">
+            <h1 class="text-danger m-0 p-0" style="font-size: 30px"><a  href="<?=site_url('')?>">WebGIS</a></h1>
+            <p class="m-0 p-0" style="font-size: 14px;margin-top:-5px !important">CodeIgniter</p>
+          </div>   
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -13,7 +18,7 @@
             <ul class="nav navbar-nav menu_nav justify-content-end">
               <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li> 
               <li class="nav-item"><a class="nav-link" href="about.html">About</a></li> 
-              <li class="nav-item"><a class="nav-link" href="package.html">Packages</a>
+              <li class="nav-item"><a class="nav-link" href="package.html">WebGIS</a>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Pages</a>
@@ -34,7 +39,7 @@
             </ul>
 
             <div class="nav-right text-center text-lg-right py-4 py-lg-0">
-              <a class="button" href="#">Get Started</a>
+              <a class="button" href="<?=site_url('admin')?>">Log In</a>
             </div>
           </div> 
         </div>
