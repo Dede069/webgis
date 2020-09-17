@@ -3,6 +3,7 @@
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
 	<i class="fa fa-upload"></i> Import CSV
 </button>
+<a href="<?=site_url($url.'/export/pdf')?>" class="btn btn-danger" target="_BLANK" ><i class="fa fa-file-pdf-o"></i> Export PDF</a>
 <hr>
 <?=$this->session->flashdata('info')?>
 

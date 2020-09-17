@@ -70,6 +70,15 @@ class Hotspot extends CI_Controller {
 		}
 		redirect('admin/hotspot');
 	}
+
+	public function export($jenis='pdf'){
+		if($jenis=='pdf'){
+			$datacontent['title']='Hotspot Report';
+			$datacontent['datatable']=$this->Model->get();
+			$html=$this->load->view('admin/hotspot/pdfView',$datacontent,TRUE);
+			generatePdf($html,'Data Hotspot','A4','landscape');
+		}
+	}
 	
 	public function importcsv(){
 		if($this->input->post()){
