@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2020 at 03:08 AM
+-- Generation Time: Sep 29, 2020 at 07:18 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `m_kategori_hotspot` (
   `id_kategori_hotspot` int(11) NOT NULL,
+  `kd_kategori_hotspot` varchar(10) DEFAULT 'NULL',
   `nm_kategori_hotspot` varchar(50) NOT NULL,
   `marker` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -38,10 +39,10 @@ CREATE TABLE `m_kategori_hotspot` (
 -- Dumping data for table `m_kategori_hotspot`
 --
 
-INSERT INTO `m_kategori_hotspot` (`id_kategori_hotspot`, `nm_kategori_hotspot`, `marker`) VALUES
-(1, 'Ringan', 'ringan.png'),
-(2, 'Sedang', 'sedang.png'),
-(3, 'Berat/Parah', 'parah.png');
+INSERT INTO `m_kategori_hotspot` (`id_kategori_hotspot`, `kd_kategori_hotspot`, `nm_kategori_hotspot`, `marker`) VALUES
+(1, '001', 'Ringan', 'ringan.png'),
+(2, '002', 'Sedang', 'sedang.png'),
+(3, '003', 'Berat/Parah', 'parah.png');
 
 -- --------------------------------------------------------
 
@@ -118,23 +119,23 @@ CREATE TABLE `t_hotspot` (
 --
 
 INSERT INTO `t_hotspot` (`id_hotspot`, `id_kecamatan`, `id_kategori_hotspot`, `lokasi`, `keterangan`, `lat`, `lng`, `tanggal`, `polygon`) VALUES
-(1, 0, 1, 'Dusun 2, Desa Ketapang., South Kalimantan, 70814, ', 'Kebakaran Parah sekali, tes', -3.795058, 114.826965, '2019-12-19', '[[{\"lat\":-3.770392897880197,\"lng\":114.78367543842744},{\"lat\":-3.747097169562818,\"lng\":114.82703791083539},{\"lat\":-3.7738186877268247,\"lng\":114.88192824783182},{\"lat\":-3.7912900055233947,\"lng\":114.88673782591455},{\"lat\":-3.7950582827409485,\"lng\":114.82696164117203}]]'),
-(2, 0, 1, 'Jalan Bajuin Raya, DUSUN 03 DESA BAJUIN KEC. BAJUI', 'Kebakaran Parah sekali', -3.767652, 114.823265, '2019-12-19', '[[{\"lat\":-3.7998542481484163,\"lng\":114.81365203857423},{\"lat\":-3.8248613493163273,\"lng\":114.85210418701173},{\"lat\":-3.847127332281291,\"lng\":114.81983184814455},{\"lat\":-3.8365082435466866,\"lng\":114.78172302246095},{\"lat\":-3.805335318820754,\"lng\":114.78069305419923},{\"lat\":-3.7676522562832417,\"lng\":114.82326507568361}]]'),
-(3, 0, 2, 'South Kalimantan, Indonesia', 'Rusak parah', -3.833768, 114.962570, '2019-12-20', '[[{\"lat\":-3.8361656900977903,\"lng\":114.99349065983395},{\"lat\":-3.853293194062035,\"lng\":115.00379689858265},{\"lat\":-3.856376108197493,\"lng\":114.9752829713779},{\"lat\":-3.8337678121110392,\"lng\":114.96257194358786}]]'),
-(4, 0, 2, 'RT 05, KEL. SARANG HALANG, Sarang Halang, South Ka', 'Rusak parah', -3.815955, 114.783783, '2019-12-20', '[[{\"lat\":-3.8094460989409646,\"lng\":114.83116149902345},{\"lat\":-3.840961425879922,\"lng\":114.84695434570314},{\"lat\":-3.848154979011987,\"lng\":114.79270935058595},{\"lat\":-3.8159547939599165,\"lng\":114.78378295898439},{\"lat\":-3.8008819515536834,\"lng\":114.81502532958986}]]'),
-(5, 19, 3, 'Jl. Sepeda', '-', -3.641010, 114.675003, '2020-01-20', ''),
-(6, 6, 2, 'Rumah Saiful', '-', -3.661010, 114.775002, '2020-01-20', ''),
-(7, 21, 2, 'Rmah Jakaria', '-', -3.846298, 114.897400, '2020-01-20', ''),
-(8, 22, 1, 'HUtan Rawa Merawa', '-', -3.761010, 114.857399, '2020-01-20', ''),
-(9, 18, 3, 'Gang Jambu', 'Rumah Terbakar', -3.817130, 114.801888, '2020-02-11', ''),
-(10, 6, 1, 'Gedung Pencakar', 'Lantai 4 terbakars', -3.655300, 114.696503, '2020-02-11', ''),
-(11, 6, 1, 'Pasar Kaki Lima', '4 Loket terbakar', -3.655300, 114.686501, '2020-02-11', ''),
-(12, 6, 3, 'Jl. Peganggas gas amat', 'tes', -3.655300, 114.775246, '2020-02-24', ''),
-(13, 6, 1, 'Jalan baru', 'tes', -3.776559, 114.777824, '2020-03-21', ''),
-(14, 18, 3, 'RW. 07, Kel. Angsau, Angsau, South Kalimantan, 708', 'dfdf', -3.802937, 114.775772, '2020-04-03', ''),
-(15, 18, 3, 'Mushola Nurul Ibadah, Jalan Samudera, RT 10 Desa P', 'tes', -3.803622, 114.762718, '2020-04-03', ''),
-(16, 6, 1, 'RT 07, KEL. SARANG HALANG, Sarang Halang, South Ka', 'dfdf', -3.814585, 114.781960, '2020-04-03', ''),
-(17, 6, 3, 'Matah, RT 27 Desa Pelaihari, Karang Taruna, South', 'tes', -3.802595, 114.758598, '2020-04-03', '');
+(1, 6, 3, 'Jl. Peganggas gas amat', 'Kebakaran Parah sekali; tes', -364.101013, 114.775002, '0000-00-00', NULL),
+(2, 8, 2, 'Jl. Pegangga', 'Kebakaran Parah sekali', -3.656000, 114.775002, '0000-00-00', NULL),
+(3, 16, 1, 'Jl. Raya', 'Rusak parah', -3.816000, 114.796997, '0000-00-00', NULL),
+(4, 18, 3, 'Jl A', 'Rusak parah', -381.716003, 114.800003, '0000-00-00', NULL),
+(5, 19, 2, 'Jl. Sepeda', '-', -364.101013, 114.675003, '0000-00-00', NULL),
+(6, 21, 1, 'Rumah Saiful', '-', -366.101013, 114.775002, '0000-00-00', NULL),
+(7, 17, 3, 'Rmah Jakaria', '-', -3.846000, 1.148000, '0000-00-00', NULL),
+(8, 21, 2, 'HUtan Rawa Merawa', '-', -376.101013, 114.857002, '0000-00-00', NULL),
+(9, 22, 1, 'Gang Jambu', 'Rumah Terbakar', -381.713013, 114.801003, '0000-00-00', NULL),
+(10, 23, 3, 'Gedung Pencakar', 'Lantai 4 terbakars', -36.553001, 114.695999, '0000-00-00', NULL),
+(11, 24, 2, 'Pasar Kaki Lima', '4 Loket terbakar', -36.553001, 114.685997, '0000-00-00', NULL),
+(12, 6, 1, 'Jl. Peganggas gas amat', 'tes', -36.553001, 114.775002, '0000-00-00', NULL),
+(13, 8, 3, 'Jalan baru', 'tes', -3.776000, 114.777000, '0000-00-00', NULL),
+(14, 16, 2, 'RW. 07; Kel. Angsau; Angsau; South Kalimantan; 708', 'dfdf', -3.802000, 114.775002, '0000-00-00', NULL),
+(15, 18, 1, 'Mushola Nurul Ibadah; Jalan Samudera; RT 10 Desa P', 'tes', -3.803000, 114.762001, '0000-00-00', NULL),
+(16, 19, 3, 'RT 07; KEL. SARANG HALANG; Sarang Halang; South Ka', 'dfdf', -3.814000, 11.478000, '0000-00-00', NULL),
+(17, 24, 2, 'Matah; RT 27 Desa Pelaihari; Karang Taruna; South', 'tes', -3.802000, 114.758003, '0000-00-00', NULL);
 
 --
 -- Indexes for dumped tables

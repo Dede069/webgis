@@ -33,7 +33,8 @@ class Kategorihotspot extends CI_Controller {
 		if($this->input->post()){
 			$data=[
 				'id_kategori_hotspot'=>$this->input->post('id_kategori_hotspot'),
-				'nm_kategori_hotspot'=>$this->input->post('nm_kategori_hotspot')
+				'nm_kategori_hotspot'=>$this->input->post('nm_kategori_hotspot'),
+				'kd_kategori_hotspot'=>$this->input->post('kd_kategori_hotspot')
 			];
 			// upload
 			if($_FILES['marker']['name']!=''){

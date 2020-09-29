@@ -86,23 +86,29 @@ class Hotspot extends CI_Controller {
 				$getKecamatan=$this->KecamatanModel->get();
 				$id_kecamatan=[];
 				foreach ($getKecamatan->result() as $row) {
-					$id_kecamatan[strtolower($row->nm_kecamatan)]=$row->id_kecamatan;
+					$id_kecamatan[strtolower(trim($row->kd_kecamatan))]=$row->id_kecamatan;
 				}
 				// print_r($id_kecamatan);
+				$getKategoriHotspot=$this->KategorihotspotModel->get();
+				$id_kategori_hotspot=[];
+				foreach ($getKategoriHotspot->result() as $row) {
+					$id_kategori_hotspot[strtolower($row->kd_kategori_hotspot)]=$row->id_kategori_hotspot;
+				}
 
 				$upload=upload('csv','csv','csv');
 				if($upload['info']==true){
 					$filename=$upload['upload_data']['file_name'];
 					$file=FCPATH.'assets/unggah/csv/'.$filename;
-					$csv = array_map('str_getcsv', file($file));
+					$csv = array_map(function($v){return str_getcsv($v, ";");}, file($file));
 					foreach ($csv as $row) {
 						$data[]=[
-							'id_kecamatan'=>$id_kecamatan[strtolower($row[2])],
-							'keterangan'=>$row[3],
-							'lokasi'=>$row[1],
-							'lat'=>$row[4],
-							'lng'=>$row[5],
-							'tanggal'=>$row[6],
+							'id_kecamatan'=>$id_kecamatan[strtolower($row[3])],
+							'id_kategori_hotspot'=>$id_kategori_hotspot[strtolower($row[7])],
+							'keterangan'=>$row[4],
+							'lokasi'=>$row[2],
+							'lat'=>$row[5],
+							'lng'=>$row[6],
+							'tanggal'=>$row[1],
 						];
 					}
 					$this->Model->insert_batch($data);

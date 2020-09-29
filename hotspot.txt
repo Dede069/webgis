@@ -1,0 +1,17 @@
+1;Jl. Peganggas gas amat;pelaihari;"Kebakaran Parah sekali; tes";-3.64101;114.775002;19/12/19
+2;Jl. Pegangga;Tambang Ulang;Kebakaran Parah sekali;-3.656;114.775002;19/12/19
+3;Jl. Raya;Pelaihari;Rusak parah;-3.816298;114.797401;19/12/20
+4;Jl A;Pelaihari;Rusak parah;-3.81716;114.800987;19/12/20
+5;Jl. Sepeda;Kurau;-;-3.64101;114.675003;20/01/20
+6;Rumah Saiful;Tambang Ulang;-;-3.66101;114.775002;20/01/20
+7;Rmah Jakaria;Batu Ampar;-;-3.846298;114.8974;20/01/20
+8;HUtan Rawa Merawa;Bajuin;-;-3.76101;114.857399;20/01/20
+9;Gang Jambu;Pelaihari;Rumah Terbakar;-3.81713;114.801888;20/02/11
+10;Gedung Pencakar;Tambang Ulang;Lantai 4 terbakars;-3.6553;114.696503;20/02/11
+11;Pasar Kaki Lima;Tambang Ulang;4 Loket terbakar;-3.6553;114.686501;20/02/11
+12;Jl. Peganggas gas amat;Tambang Ulang;tes;-3.6553;114.775246;20/02/24
+13;Jalan baru;Tambang Ulang;tes;-3.776559;114.777824;20/03/21
+14;"RW. 07; Kel. Angsau; Angsau; South Kalimantan; 708";Pelaihari;dfdf;-3.802937;114.775772;20/04/03
+15;"Mushola Nurul Ibadah; Jalan Samudera; RT 10 Desa P";Pelaihari;tes;-3.803622;114.762718;20/04/03
+16;"RT 07; KEL. SARANG HALANG; Sarang Halang; South Ka";Tambang Ulang;dfdf;-3.814585;114.78196;20/04/03
+17;"Matah; RT 27 Desa Pelaihari; Karang Taruna; South";Tambang Ulang;tes;-3.802595;114.758598;20/04/03

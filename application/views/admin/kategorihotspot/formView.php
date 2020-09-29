@@ -13,14 +13,18 @@ if($parameter=='ubah' && $id!=''){
         <?=input_hidden('parameter',$parameter)?>
     <div class="row">
         <div class="col-md-6">
-    	<div class="form-group">
-    		<label>Nama Kategori</label>
-    		<div class="row">
-	    		<div class="col-md-8">
-	    			<?=input_text('nm_kategori_hotspot',$nm_kategori_hotspot)?>
-		    	</div>
-	    	</div>
-    	</div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Kode Kategori</label>
+                    <?=input_text('kd_kategori_hotspot',$kd_kategori_hotspot)?>
+                </div>
+                <div class="col-md-7">
+                    <label>Nama Kategori</label>
+                    <?=input_text('nm_kategori_hotspot',$nm_kategori_hotspot)?>
+                </div>
+            </div>
+        </div>
     	<div class="form-group">
             <label>Marker</label>
             <div class="row">

@@ -6,7 +6,8 @@
 <table class="table table-bordered">
 	<thead>
 		<tr>
-			<th width="50px" class="text-center">No</th>
+			<th width="50px" class="text-center">No.</th>
+			<th>Kode</th>
 			<th>Nama Kategori</th>
 			<th>Marker</th>
 			<th width="200px">Aksi</th>
@@ -18,7 +19,8 @@
 			foreach ($datatable->result() as $row) {
 				?>
 					<tr>
-						<td class="text-center"><?=$no?></td>
+						<td class="text-center"><?=$no++?></td>
+						<td class="text-center"><?=$row->kd_kategori_hotspot?></td>
 						<td><?=$row->nm_kategori_hotspot?></td>
 						<td class="text-center"><?=($row->marker==''?'-':'<img src="'.assets('unggah/marker/'.$row->marker).'" width="40px">')?></td>
 						<td class="text-center">
