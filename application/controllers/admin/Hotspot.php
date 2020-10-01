@@ -132,6 +132,83 @@ class Hotspot extends CI_Controller {
 		$this->session->set_flashdata('info',$info);
 		redirect('admin/hotspot');
 	}
+
+	public function importzip(){
+		if($this->input->post()){
+			if($_FILES['zip']['name']!=''){
+				$getKecamatan=$this->KecamatanModel->get();
+				$id_kecamatan=[];
+				foreach ($getKecamatan->result() as $row) {
+					$id_kecamatan[strtolower(str_replace('.','',trim($row->kd_kecamatan)))]=$row->id_kecamatan;
+				}
+				$getKategoriHotspot=$this->KategorihotspotModel->get();
+				$id_kategori_hotspot=[];
+				foreach ($getKategoriHotspot->result() as $row) {
+					$id_kategori_hotspot[strtolower($row->kd_kategori_hotspot)]=$row->id_kategori_hotspot;
+				}
+				$upload=upload('zip','zip','zip');
+				if($upload['info']==true){
+					// extract zip
+					$filename=$upload['upload_data']['file_name'];
+					$zipFile = FCPATH.'assets/unggah/zip/'.$filename;
+					$newFolder = FCPATH.'assets/unggah/zip/'.(str_replace('.zip','',$filename));
+					$zip = new ZipArchive;
+					//proses extract file zip
+					if ($zip->open($zipFile) === TRUE) {
+					    $zip->extractTo($newFolder);
+					    $zip->close();
+					    //lakukan pembacaan folder hasil ekstrak zip
+					    foreach (glob($newFolder.'/*.txt') as $file) {
+					    	$basename = basename($file);
+					    	$kd_kecamatan = substr($basename, 0, 6);
+					    	$tanggal = substr($basename, 6, 4).'-'.substr($basename, 10, 2).'-'.substr($basename, 12, 2);
+					    	$txt = array_map(function($v){return str_getcsv($v, ";");}, file($file));
+							foreach ($txt as $row) {
+								$data[]=[
+									'id_kecamatan'=>$id_kecamatan[$kd_kecamatan],
+									'id_kategori_hotspot'=>$id_kategori_hotspot[strtolower($row[5])],
+									'keterangan'=>$row[2],
+									'lokasi'=>$row[1],
+									'lat'=>$row[3],
+									'lng'=>$row[4],
+									'tanggal'=>$tanggal,
+								];
+							}
+							//hapus file
+							unlink($file);
+					    }
+						$this->Model->insert_batch($data);
+						//hapus file zip
+						unlink($zipFile);
+						//remove folder extract zip
+						rmdir($newFolder);
+
+						$info='<div class="alert alert-success alert-dismissible">
+					            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					            <h4><i class="icon fa fa-check"></i> Sukses!</h4> Import data dari ZIP sukses </div>';
+					} else {
+						$info='<div class="alert alert-danger alert-dismissible">
+					            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					            <h4><i class="icon fa fa-check"></i> Sukses!</h4> Import data dari ZIP gagal </div>';
+					}
+				
+				}
+				elseif($upload['info']==false){
+					$info='<div class="alert alert-danger alert-dismissible">
+	            		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	            		<h4><i class="icon fa fa-ban"></i> Error!</h4> '.$upload['message'].' </div>';
+				}
+			}
+			else{
+				$info='<div class="alert alert-danger alert-dismissible">
+	            		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	            		<h4><i class="icon fa fa-ban"></i> Error!</h4> Tidak ada file ZIP yang diunggah</div>';
+			}
+		}
+		$this->session->set_flashdata('info',$info);
+		redirect('admin/hotspot');
+	}
+
 	public function hapus($id=''){
 		// hapus file di dalam folder
 		$this->db->where('id_hotspot',$id);

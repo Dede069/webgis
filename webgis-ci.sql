@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2020 at 07:18 AM
+-- Generation Time: Oct 01, 2020 at 06:14 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -119,23 +119,23 @@ CREATE TABLE `t_hotspot` (
 --
 
 INSERT INTO `t_hotspot` (`id_hotspot`, `id_kecamatan`, `id_kategori_hotspot`, `lokasi`, `keterangan`, `lat`, `lng`, `tanggal`, `polygon`) VALUES
-(1, 6, 3, 'Jl. Peganggas gas amat', 'Kebakaran Parah sekali; tes', -364.101013, 114.775002, '0000-00-00', NULL),
-(2, 8, 2, 'Jl. Pegangga', 'Kebakaran Parah sekali', -3.656000, 114.775002, '0000-00-00', NULL),
-(3, 16, 1, 'Jl. Raya', 'Rusak parah', -3.816000, 114.796997, '0000-00-00', NULL),
-(4, 18, 3, 'Jl A', 'Rusak parah', -381.716003, 114.800003, '0000-00-00', NULL),
-(5, 19, 2, 'Jl. Sepeda', '-', -364.101013, 114.675003, '0000-00-00', NULL),
-(6, 21, 1, 'Rumah Saiful', '-', -366.101013, 114.775002, '0000-00-00', NULL),
-(7, 17, 3, 'Rmah Jakaria', '-', -3.846000, 1.148000, '0000-00-00', NULL),
-(8, 21, 2, 'HUtan Rawa Merawa', '-', -376.101013, 114.857002, '0000-00-00', NULL),
-(9, 22, 1, 'Gang Jambu', 'Rumah Terbakar', -381.713013, 114.801003, '0000-00-00', NULL),
-(10, 23, 3, 'Gedung Pencakar', 'Lantai 4 terbakars', -36.553001, 114.695999, '0000-00-00', NULL),
-(11, 24, 2, 'Pasar Kaki Lima', '4 Loket terbakar', -36.553001, 114.685997, '0000-00-00', NULL),
-(12, 6, 1, 'Jl. Peganggas gas amat', 'tes', -36.553001, 114.775002, '0000-00-00', NULL),
-(13, 8, 3, 'Jalan baru', 'tes', -3.776000, 114.777000, '0000-00-00', NULL),
-(14, 16, 2, 'RW. 07; Kel. Angsau; Angsau; South Kalimantan; 708', 'dfdf', -3.802000, 114.775002, '0000-00-00', NULL),
-(15, 18, 1, 'Mushola Nurul Ibadah; Jalan Samudera; RT 10 Desa P', 'tes', -3.803000, 114.762001, '0000-00-00', NULL),
-(16, 19, 3, 'RT 07; KEL. SARANG HALANG; Sarang Halang; South Ka', 'dfdf', -3.814000, 11.478000, '0000-00-00', NULL),
-(17, 24, 2, 'Matah; RT 27 Desa Pelaihari; Karang Taruna; South', 'tes', -3.802000, 114.758003, '0000-00-00', NULL);
+(69, 8, 3, 'Gunung Makmur, South Kalimantan, Indonesia', 'Kebakaran Parah sekali; tes', -3.888232, 114.650726, '2020-08-01', ''),
+(70, 18, 2, 'Telaga Biru, Sungai Jelai, South Kalimantan, Indon', 'Kebakaran Parah sekali', -3.699476, 114.757561, '2020-08-01', ''),
+(71, 21, 1, 'Jl. Raya', 'Rusak parah', -3.816000, 114.796997, '2020-08-01', NULL),
+(72, 16, 3, 'Martadah Baru, South Kalimantan, Indonesia', 'Rusak parah', -3.614505, 114.808754, '2020-08-01', ''),
+(73, 21, 2, 'Jl. Sepeda', '-', -364.101013, 114.675003, '2020-08-01', NULL),
+(74, 21, 1, 'Rumah Saiful', '-', -366.101013, 114.775002, '2020-08-01', NULL),
+(75, 21, 3, 'Rmah Jakaria', '-', -3.846000, 1.148000, '2020-08-01', NULL),
+(76, 21, 2, 'HUtan Rawa Merawa', '-', -376.101013, 114.857002, '2020-08-01', NULL),
+(77, 21, 1, 'Gang Jambu', 'Rumah Terbakar', -381.713013, 114.801003, '2020-08-01', NULL),
+(78, 19, 3, 'Kurau, South Kalimantan, Indonesia', 'Lantai 4 terbakars', -3.590178, 114.620934, '2020-08-01', ''),
+(79, 21, 2, 'Pasar Kaki Lima', '4 Loket terbakar', -36.553001, 114.685997, '2020-08-01', NULL),
+(80, 21, 1, 'Jl. Peganggas gas amat', 'tes', -36.553001, 114.775002, '2020-08-01', NULL),
+(81, 21, 3, 'South Kalimantan, Indonesia', 'tes', -3.811844, 115.026558, '2020-08-01', ''),
+(82, 18, 2, 'RW. 07; Kel. Angsau; Angsau; South Kalimantan; 708', 'dfdf', -3.808418, 114.775429, '2020-08-01', ''),
+(83, 21, 1, 'Mushola Nurul Ibadah; Jalan Samudera; RT 10 Desa P', 'tes', -3.803000, 114.762001, '2020-08-01', NULL),
+(84, 18, 3, 'Jalan Trans Kalimantan, RT 06, KEL. SARANG HALANG,', 'dfdf', -3.853636, 114.797073, '2020-08-01', ''),
+(85, 21, 2, 'Matah; RT 27 Desa Pelaihari; Karang Taruna; South', 'tes', -3.802000, 114.758003, '2020-08-01', NULL);
 
 --
 -- Indexes for dumped tables
@@ -191,7 +191,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `t_hotspot`
 --
 ALTER TABLE `t_hotspot`
-  MODIFY `id_hotspot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_hotspot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
