@@ -10,47 +10,21 @@
 <hr>
 <?=$this->session->flashdata('info')?>
 
-<table class="table table-bordered">
+<table class="table table-bordered dt">
 	<thead>
 		<tr>
 			<th width="50px" class="text-center">No</th>
+			<th>Tanggal</th>
 			<th>Lokasi</th>
 			<th>Nama Kecamatan</th>
 			<th>Keterangan</th>
 			<th>Lat</th>
 			<th>Lng</th>
-			<th>Tanggal</th>
 			<th>Kategori</th>
 			<th width="200px">Aksi</th>
 		</tr>
 	</thead>
-	<tbody>
-		<?php
-			$no=1;
-			foreach ($datatable->result() as $row) {
-				?>
-					<tr>
-						<td class="text-center"><?=$no?></td>
-						<td><?=$row->lokasi?></td>
-						<td><?=$row->nm_kecamatan?></td>
-						<td><?=$row->keterangan?></td>
-						<td><?=$row->lat?></td>
-						<td><?=$row->lng?></td>
-						<td><?=$row->tanggal?></td>
-						<td><?=$row->nm_kategori_hotspot?></td>
-						<td class="text-center">
-							<div class="btn-group">
-								<a href="<?=site_url($url.'/form/ubah/'.$row->id_hotspot)?>" class="btn btn-info"><i class="fa fa-edit"></i> Ubah</a>
-								<a href="<?=site_url($url.'/hapus/'.$row->id_hotspot)?>" class="btn btn-danger" onclick="return confirm('Hapus data?')"><i class="fa fa-trash"></i> Hapus</a>
-							</div>
-						</td>
-					</tr>
-				<?php
-				$no++;
-			}
-
-		?>
-	</tbody>
+	
 </table>
 <?=content_close()?>
 

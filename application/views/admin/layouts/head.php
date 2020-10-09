@@ -13,7 +13,7 @@
     <link href="<?=templates('vendors/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
     <!-- NProgress -->
     <link href="<?=templates('vendors/nprogress/nprogress.css')?>" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css"/>
     <!-- Custom Theme Style -->
     <link href="<?=templates('build/css/custom.min.css')?>" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
